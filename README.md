@@ -20,7 +20,14 @@ sudo apt install -y \
   python3-venv \
   gettext \
   cmake \
-  xclip
+  xclip \
+  wl-clipboard
+
+# wl-clipboard allows to use system clipboard in Wayland sessions
+# but requires setting 
+# vim.opt.clipboard = "unnamedplus"
+
+
 # Per C++ (Debugger e LSP)
 sudo apt install -y clangd lldb gdb
 # Per Python (Debugger)
