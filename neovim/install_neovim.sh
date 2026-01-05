@@ -1,14 +1,22 @@
 #!/bin/bash
 set -e
 
-# Controlla parametri
-if [ "$#" -ne 2 ]; then
-  echo "Uso: $0 <utente> <gruppo>"
+# --- Modifica Logica Parametri ---
+if [ "$#" -eq 1 ]; then
+  # Se c'è un solo parametro, usalo per entrambi
+  USER_NAME="$1"
+  GROUP_NAME="$1"
+elif [ "$#" -eq 2 ]; then
+  # Se ce ne sono due, assegnali normalmente
+  USER_NAME="$1"
+  GROUP_NAME="$2"
+else
+  echo "Uso: $0 <utente> [gruppo]"
+  echo "Nota: Se il gruppo viene omesso, verrà usato il nome utente."
   exit 1
 fi
+# ---------------------------------
 
-USER_NAME="$1"
-GROUP_NAME="$2"
 USER_HOME=$(eval echo "~$USER_NAME")
 
 echo "=========================================="
@@ -112,6 +120,7 @@ echo "" >>"$USER_HOME/.bashrc"
 echo "# Neovim configuration" >>"$USER_HOME/.bashrc"
 echo 'export PATH="/opt/nvim-linux-x86_64/bin:$PATH"' >>"$USER_HOME/.bashrc"
 echo 'export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"' >>"$USER_HOME/.bashrc"
+chown "$USER_NAME:$GROUP_NAME" "$USER_HOME/.bashrc"
 
 # Aggiorna PATH anche a livello di sistema
 echo 'PATH="/opt/nvim-linux-x86_64/bin:'"$USER_HOME"'/.local/share/nvim/mason/bin:$PATH"' >>/etc/environment
