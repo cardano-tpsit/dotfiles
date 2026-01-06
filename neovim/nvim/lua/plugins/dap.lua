@@ -1,5 +1,5 @@
 return {
-  -- Core DAP
+  -- 1. Core DAP
   {
     "mfussenegger/nvim-dap",
     config = function()
@@ -15,7 +15,7 @@ return {
         },
       }
 
-      -- Configura adapter cppdbg (per retrocompatibilità)
+      -- Configura adapter cppdbg (Microsoft)
       dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
@@ -30,12 +30,13 @@ return {
           name = "Python (auto venv/container)",
           program = "${file}",
           pythonPath = function()
+            -- Cerca il binario python nel percorso specificato
             return vim.fn.getcwd() .. "/dev/python"
           end,
         },
       }
 
-      -- C / C++ - entrambe le configurazioni disponibili
+      -- C / C++
       dap.configurations.cpp = {
         {
           name = "C++ (lldb)",
@@ -56,21 +57,31 @@ return {
           end,
           cwd = "${workspaceFolder}",
           stopAtEntry = false,
+          -- NOTA: MIMode deve essere "gdb" o "lldb"
           MIMode = "gdb",
-          miDebuggerPath = vim.fn.getcwd() .. "/dev/run",
+          -- miDebuggerPath deve puntare al vero eseguibile gdb sul tuo sistema
+          miDebuggerPath = "/usr/bin/gdb",
+          setupCommands = {
+            {
+              text = "-enable-pretty-printing",
+              description = "enable pretty printing",
+              ignoreFailures = false,
+            },
+          },
         },
       }
 
-      -- usa stessa config per C
+      -- Usa stessa config per C
       dap.configurations.c = dap.configurations.cpp
     end,
   },
 
-  -- Install adapters automatically
+  -- 2. Mason Integration (Assicura che gli strumenti siano installati)
   {
     "jay-babu/mason-nvim-dap.nvim",
     opts = {
       ensure_installed = { "python", "codelldb", "cppdbg" },
+      handlers = {}, -- Previene sovrascritture indesiderate di Mason sulle config manuali sopra
     },
   },
 }
