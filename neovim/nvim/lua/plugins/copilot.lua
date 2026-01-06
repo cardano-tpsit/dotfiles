@@ -53,7 +53,7 @@ return {
     config = function()
       require("CopilotChat").setup()
 
-      vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<CR>", {
+      vim.keymap.set("n", "<M-c>", "<cmd>CopilotChatToggle<CR>", {
         desc = "Copilot Chat",
       })
 
