@@ -5,23 +5,25 @@ return {
 	-- ==========================================
 	-- 1. MOTORE DI RENDERING E DPI
 	-- ==========================================
-	front_end = "WebGpu", -- Prova "OpenGL" se WebGpu dà problemi
-	dpi = 96.0, -- Forza il DPI standard (prova 120.0 se hai un monitor 2K)
+	-- front_end = "WebGpu", -- Prova "OpenGL" se WebGpu dà problemi
+	-- dpi = 96.0, -- Forza il DPI standard (prova 120.0 se hai un monitor 2K)
 
 	-- ==========================================
 	-- 2. CONFIGURAZIONE FONT (Senza blur)
 	-- ==========================================
 	font = wezterm.font_with_fallback({
 		{
+			-- family = "Liberation Mono",
+			-- family = "Consolas",
 			family = "JetBrains Mono",
-			weight = "Medium",
+			-- weight = "Medium",
 			-- In WezTerm, hinting e antialias si controllano spesso
 			-- tramite il rasterizzatore di sistema o queste opzioni:
 		},
 		"Fira Code",
 		"Noto Color Emoji",
 	}),
-	font_size = 11,
+	font_size = 13,
 
 	-- Disattiva le legature
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
@@ -53,4 +55,5 @@ return {
 	enable_tab_bar = true,
 	hide_tab_bar_if_only_one_tab = true,
 	use_fancy_tab_bar = false,
+	audible_bell = "Disabled",
 }

@@ -1,0 +1,203 @@
+# i3 config file (v4)
+# Configurazione per sviluppatore con supporto dual monitor
+
+# Modifier key (Mod4 = Super/Windows key)
+set $mod Mod4
+
+# Font per le finestre e la barra
+font pango:JetBrainsMono 10
+#font pango:DejaVu Sans Mono 10
+
+# Colori (tema scuro professionale)
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $indicator-color     #00ff00
+
+# Configurazione finestre
+# client.focused          $bg-color           $bg-color          $text-color          $indicator-color
+# client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $indicator-color
+# client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $indicator-color
+# client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indicator-color
+
+# Bordi finestre
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+# Gap tra finestre (commentare se non si vuole usare i3-gaps)
+#gaps inner 8
+#gaps outer 4
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Keybindings essenziali
+bindsym $mod+Return exec wezterm
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -show run
+
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Alternative con le frecce
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Spostamento finestre
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Alternative con le frecce
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split orizzontale/verticale
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Focus parent/child
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+# Workspace per monitor
+# Monitor laptop: workspace 1-5
+# Monitor esterno: workspace 6-10
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Spostamento finestre ai workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Assegnazione workspace ai monitor
+# Questi verranno configurati automaticamente dallo script setup-monitors.sh
+workspace $ws1 output eDP-1 eDP LVDS-1 LVDS
+workspace $ws2 output eDP-1 eDP LVDS-1 LVDS
+workspace $ws3 output eDP-1 eDP LVDS-1 LVDS
+workspace $ws4 output eDP-1 eDP LVDS-1 LVDS
+workspace $ws5 output eDP-1 eDP LVDS-1 LVDS
+workspace $ws6 output HDMI-1 HDMI-2 HDMI-1-1 HDMI-1-2 DP-1 DP-2 DP-1-1 DP-1-2
+workspace $ws7 output HDMI-1 HDMI-2 HDMI-1-1 HDMI-1-2 DP-1 DP-2 DP-1-1 DP-1-2
+workspace $ws8 output HDMI-1 HDMI-2 HDMI-1-1 HDMI-1-2 DP-1 DP-2 DP-1-1 DP-1-2
+workspace $ws9 output HDMI-1 HDMI-2 HDMI-1-1 HDMI-1-2 DP-1 DP-2 DP-1-1 DP-1-2
+workspace $ws10 output HDMI-1 HDMI-2 HDMI-1-1 HDMI-1-2 DP-1 DP-2 DP-1-1 DP-1-2
+
+# Reload/Restart
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Vuoi uscire da i3?' -B 'Sì, esci' 'i3-msg exit'"
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Scorciatoie multimediali
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Luminosità (se supportata)
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
+# Screenshot
+bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Print exec --no-startup-id flameshot full -c
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+
+# Lock screen
+bindsym $mod+x exec --no-startup-id i3lock -c 000000
+
+# Scorciatoie sviluppatore
+
+bindsym $mod+ctrl+c exec --no-startup-id code
+# Microsoft Edge: Super + i (i come internet/web)
+bindsym $mod+ctrl+e exec --no-startup-id microsoft-edge
+# Dolphin (File Manager): Super + n (n come nautilus/navigator)
+bindsym $mod+ctrl+d exec --no-startup-id dolphin
+
+# Floating windows per alcune applicazioni
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+# Autostart
+exec_always --no-startup-id ~/.config/i3/scripts/startup.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+exec --no-startup-id picom -b
+exec_always --no-startup-id ~/.screenlayout/dual.sh
+exec --no-startup-id nitrogen --restore
+# exec_always --no-startup-id ~/.config/i3/scripts/setup-monitors.sh
