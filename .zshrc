@@ -126,5 +126,9 @@ export PATH=$HOME/.local/bin:$PATH
 export ELECTRON_ENABLE_WAYLAND=1
 # export ELECTRON_OZONE_PLATFORM_HINT=auto
 export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
-alias code='/usr/local/bin/code-wayland'
+alias fd=fdfind
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
+export EDITOR=code
+export VISUAL=code
+export TERMINAL=terminator
+export BROWSER=microsoft-edge
