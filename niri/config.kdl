@@ -368,7 +368,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: Terminator" { spawn "terminator"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+E hotkey-overlay-title="Open File Manager: Files" { spawn "nautilus" "--new-window"; }
     Mod+B hotkey-overlay-title="Open Browser: Edge" { spawn "microsoft-edge"; }
     Mod+C hotkey-overlay-title="Open Editor: VScode" { spawn "code"; }
