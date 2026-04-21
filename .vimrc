@@ -1,35 +1,60 @@
-" Attiva sintassi
-
-" Abilita filetype detection + indent automatico
+" ===== BASIC =====
+set nocompatible
 filetype plugin indent on
+syntax on
 
-" Numeri di riga
-" set number
-" set relativenumber
+" ===== UI =====
+set number              " numeri di riga
+set relativenumber      " numeri relativi
+" set cursorline          " evidenzia riga corrente
+set showcmd             " mostra comandi mentre scrivi
+set wildmenu            " autocomplete comandi
+set scrolloff=5         " margine quando scrolli
 
-" Evidenzia riga corrente
-set cursorline
-
-" Evidenzia matching parentesi
-set showmatch
-
-" Ricerca migliorata
-set hlsearch
-set incsearch
+" ===== SEARCH =====
 set ignorecase
 set smartcase
+set incsearch
+set hlsearch
 
-" Indentazione smart
-set autoindent
-set smartindent
+" ===== INDENT =====
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set smartindent
 
-" Scroll più confortevole
-set scrolloff=8
+" ===== CLIPBOARD =====
+set clipboard=unnamedplus
 
-" Mostra invisibili (utile)
-" set list
-" set listchars=tab:»·,trail:·
+" ===== BACKUP / SWAP =====
+set nobackup
+set nowritebackup
+set noswapfile
 
+" ===== MOUSE (facoltativo) =====
+set mouse=a
+
+" ===== COLORS =====
+set termguicolors
+colorscheme PaperColor
+set background=dark
+
+" ===== KEYMAP UTILI =====
+" let mapleader = " "
+
+" salva con Ctrl+s
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+" esci con Ctrl+q
+nnoremap <C-q> :q<CR>
+
+" togli highlight ricerca con leader+h
+nnoremap <leader>h :nohlsearch<CR>
+
+" copia negli appunti di sistema
+vnoremap <leader>y "+y
+nnoremap <leader>y "+yy
+
+" incolla da clipboard
+nnoremap <leader>p "+p
