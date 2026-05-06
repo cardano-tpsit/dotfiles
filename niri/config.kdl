@@ -330,6 +330,8 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"^org.gnome.NautilusPreviewer$"#
+
     open-floating true
 }
 
@@ -638,9 +640,16 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+gestures {
+    hot-corners {
+        off
+    }
+}
 include "dms/binds.kdl"
 
 
 include "dms/cursor.kdl"
 
 include "dms/outputs.kdl"
+
+include "dms/windowrules.kdl"
