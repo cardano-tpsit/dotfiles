@@ -25,7 +25,3 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-export EDITOR=code
-export VISUAL=code
-export TERMINAL=terminator
-export BROWSER=microsoft-edge

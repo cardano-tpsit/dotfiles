@@ -80,7 +80,7 @@ ZSH_THEME="cesco"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git history zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting z zsh-autocomplete)
-plugins=(git history zsh-autosuggestions zsh-syntax-highlighting z)
+plugins=(history zsh-autosuggestions zsh-syntax-highlighting z)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -91,11 +91,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+#if [[ -n $SSH_CONNECTION ]]; then
+#  export EDITOR='vim'
+#else
+#  export EDITOR='nvim'
+#fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -114,21 +114,37 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 xhost +local:docker > /dev/null 2>&1
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export TIAGO_CONTAINER=229
 # alias vi='nvim'
 export PATH=$HOME/.local/bin:$PATH
 export ELECTRON_ENABLE_WAYLAND=1
-# export ELECTRON_OZONE_PLATFORM_HINT=auto
-export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+# export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 alias fd=fdfind
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
-export EDITOR=code
-export VISUAL=code
-export TERMINAL=terminator
-export BROWSER=microsoft-edge
+# Terminal editor
+alias vi='nvim'
+alias vim='nvim'
+
+# Default editor for applications
+export EDITOR='code --wait'
+export VISUAL='code --wait'
+# export EDITOR=code
+# export VISUAL=code
+# export TERMINAL=terminator
+# export BROWSER=firefox
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+export GBM_BACKEND=nvidia-drm
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export LIBVA_DRIVER_NAME=nvidia
+export NVD_BACKEND=direct
