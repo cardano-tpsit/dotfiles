@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+xhost +local:docker
+cd ~/code/work/unipv/tiago/tiago-devcontainer
+make up-dev && make shell-dev
+
